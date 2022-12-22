@@ -1,6 +1,7 @@
 package main
 
 import (
+	"charites/middleware"
 	pb "charites/proto"
 	"context"
 	"flag"
@@ -8,18 +9,16 @@ import (
 	"log"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
-
-var port1 string
-
-func init() {
-	flag.StringVar(&port1, "p", "8000", "启动端口号")
-	flag.Parse()
-}
 
 func SayHello(client pb.GreeterClient) error {
 	// 像调用本地函数一样
-	resp, _ := client.SayHello(context.Background(), &pb.HelloRequest{Name: "linda"})
+	resp, err := client.SayHello(context.Background(), &pb.HelloRequest{Name: "linda"})
+	if err != nil {
+		log.Printf("client.SayHello err: %s", err)
+		return err
+	}
 	log.Printf("client.SayHello resp: %s", resp.Message)
 	return nil
 }
@@ -67,15 +66,30 @@ func SayRoute(client pb.GreeterClient) error {
 	return nil
 }
 
-func main() {
+func HelloServer(port string) {
 	// 创建与服务端的连接句柄
-	conn, _ := grpc.Dial(":"+port1, grpc.WithInsecure())
+	// conn, _ := grpc.Dial(":"+port, grpc.WithInsecure())
+
+	// 客户端注册拦截器
+	conn, _ := grpc.Dial(":"+port,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithUnaryInterceptor(middleware.ClientUnaryInterceptor),
+	)
 	defer conn.Close()
 
 	// 客户端对象，联系 errors 内部逻辑
 	client := pb.NewGreeterClient(conn)
 	_ = SayHello(client)
-	_ = SayList(client)
-	_ = SayRecord(client)
-	_ = SayRoute(client)
+	// _ = SayList(client)
+	// _ = SayRecord(client)
+	// _ = SayRoute(client)
+}
+
+func main() {
+	// TagServer(port)
+	var port string
+	flag.StringVar(&port, "p", "8000", "启动端口号")
+	flag.Parse()
+
+	HelloServer(port)
 }

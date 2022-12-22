@@ -4,11 +4,10 @@ import (
 	"charites/pkg/bapi"
 	"charites/pkg/errcode"
 	pb "charites/proto"
+
 	"context"
 	"encoding/json"
 	"fmt"
-
-	"google.golang.org/grpc/metadata"
 )
 
 type TagServer struct {
@@ -20,10 +19,6 @@ func NewTagServer() *TagServer {
 }
 
 func (t *TagServer) GetTagList(ctx context.Context, req *pb.GetTagListRequest) (*pb.GetTagListReplay, error) {
-	// ctx 包含请求头，如metadata相关信息
-	md, _ := metadata.FromIncomingContext(ctx)
-	fmt.Printf("md: %+v\n", md)
-
 	// 测试PRC异常的异常值
 	// return nil, errcode.ToRPCError(errcode.ErrorGetTagListFail)
 

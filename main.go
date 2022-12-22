@@ -5,6 +5,7 @@ import (
 	"charites/apps/tag"
 	_ "charites/bootstrap"
 	"charites/global"
+	"charites/middleware"
 	pb "charites/proto"
 	"log"
 	"net"
@@ -14,8 +15,10 @@ import (
 )
 
 func main() {
+	// s := grpc.NewServer()
 
-	s := grpc.NewServer()
+	// 服务端注册拦截器
+	s := grpc.NewServer(grpc.UnaryInterceptor(middleware.ServerUnaryInterceptor))
 
 	pb.RegisterGreeterServer(s, helloword.NewGreeterServer())
 	pb.RegisterTagServiceServer(s, tag.NewTagServer())
