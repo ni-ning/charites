@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = ".;proto";
+
+import "proto/common.proto";
+
+service TagService {
+    rpc GetTagList(GetTagListRequest)returns (GetTagListReplay){}
+}
+
+message GetTagListRequest{
+    string name = 1;
+    uint32 state = 2;
+}
+
+message Tag{
+    int64 id = 1;
+    string name = 2;
+    uint32 state = 3;
+}
+
+message GetTagListReplay{
+    uint32 code = 1;
+    repeated Tag list = 2;
+    Pager pager = 3;
+}
+
