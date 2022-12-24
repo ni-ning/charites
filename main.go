@@ -74,8 +74,7 @@ func main() {
 	// 注册服务到注册中心
 	client := registry.NewClient()
 	ip, _ := utils.GetOutBoundIp()
-	serviceName := "shopping"
-	client.RegisterService(serviceName, ip.String(), global.ServerSetting.HttpPort)
+	client.RegisterService(global.ServerSetting.ServiceName, ip.String(), global.ServerSetting.HttpPort)
 
 	// 关闭服务流程
 	quitChan := make(chan os.Signal, 1) // 在代码里接收操作系统发来的中断信号
@@ -84,7 +83,7 @@ func main() {
 	<-quitChan // 一直卡住，直到收到中断信号
 
 	fmt.Println("*服务关闭清理流程*")
-	serviceId := fmt.Sprintf("%s-%s-%d", serviceName, ip, global.ServerSetting.HttpPort)
+	serviceId := fmt.Sprintf("%s-%s-%d", global.ServerSetting.ServiceName, ip, global.ServerSetting.HttpPort)
 	fmt.Println("注销服务: ", serviceId)
 	client.DeregisterService(serviceId)
 }

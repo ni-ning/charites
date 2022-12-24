@@ -4,12 +4,13 @@ import (
 	"charites/middleware"
 	pb "charites/proto"
 	"context"
-	"flag"
 	"io"
 	"log"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+
+	_ "github.com/mbobakov/grpc-consul-resolver"
 )
 
 func SayHello(client pb.GreeterClient) error {
@@ -66,14 +67,18 @@ func SayRoute(client pb.GreeterClient) error {
 	return nil
 }
 
-func HelloServer(port string) {
+func HelloServer() {
 	// 创建与服务端的连接句柄
 	// conn, _ := grpc.Dial(":"+port, grpc.WithInsecure())
 
+	// consul 负载聚恒的方式连接
+	consulStr := "consul://127.0.0.1:8500/shopping?healthy=true"
 	// 客户端注册拦截器
-	conn, _ := grpc.Dial(":"+port,
+	conn, _ := grpc.Dial(consulStr,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithUnaryInterceptor(middleware.ClientUnaryInterceptor),
+		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy": "round_robin"}`), // 指定round_robin策略
+
 	)
 	defer conn.Close()
 
@@ -87,9 +92,9 @@ func HelloServer(port string) {
 
 func main() {
 	// TagServer(port)
-	var port string
-	flag.StringVar(&port, "p", "8000", "启动端口号")
-	flag.Parse()
+	// var port string
+	// flag.StringVar(&port, "p", "8081", "启动端口号")
+	// flag.Parse()
 
-	HelloServer(port)
+	HelloServer()
 }

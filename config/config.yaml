@@ -1,5 +1,6 @@
 Server:
   HttpPort: 8081
+  ServiceName: "shopping"
 App:
   DefaultPageSize: 10
   MaxPageSize: 100

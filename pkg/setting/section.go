@@ -3,7 +3,8 @@ package setting
 import "time"
 
 type ServerSettingS struct {
-	HttpPort int
+	HttpPort    int
+	ServiceName string
 }
 
 type AppSettingS struct {
