@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option go_package = ".;proto";
+
+
+service Goods {
+    // 获取直播间商品列表
+    rpc GetGoodsListByRoomId(GetGoodsListRoomReq) returns (GoodsListReply){};
+
+    // 获取商品详情
+    rpc GetGoodsDetail(GetGoodsDetailReq) returns (GoodsDetailReply){};
+}
+
+message GetGoodsListRoomReq{
+    int64 RoomId = 2;
+}
+
+message GoodsInfo {
+    int64 GoodsId = 1;
+    int64 CategoryId = 2;
+    int32 Status = 3;
+    string Title = 4;
+    string MarketPrice = 5;
+    string Price = 6;
+    string Brief = 7;
+    repeated string HeadImgs = 8;
+}
+
+message GoodsListReply {
+    int64 CurrentGoodsId = 1;
+    repeated GoodsInfo data = 2 ;
+}
+
+message GetGoodsDetailReq {
+    int64 GoodsId = 1;
+}
+
+message GoodsDetailReply {
+    int64 GoodsId = 1;
+    int64 CategoryId = 2;
+    int32 Status = 3;
+    int64 Code = 4;
+    string BrandName = 5;
+    string Title = 6;
+    string MarketPrice = 7;
+    string Price = 8;
+    string Brief = 9;
+    repeated string HeadImgs = 10;
+    repeated string Videos = 11;
+    repeated string Detail = 12;
+}

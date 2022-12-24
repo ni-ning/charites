@@ -12,8 +12,8 @@ Database:
   UserName: root        # 填写你的数据库账号
   Password: 123456      # 填写你的数据库密码
   Host: 127.0.0.1:3306
-  DBName: achilles      # 填写你的数据库名称
-  TablePrefix: blog_
+  DBName: charites      # 填写你的数据库名称
+  TablePrefix: shopping_
   Charset: utf8mb4
   ParseTime: True
   MaxIdleConns: 10

@@ -15,7 +15,8 @@ import (
 // ClientUnaryInterceptor 客户端一元拦截器
 func ClientUnaryInterceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 	start := time.Now()
-	time.Sleep(2 * time.Second)
+	md := metadata.Pairs("authorization", "token")
+	ctx = metadata.NewOutgoingContext(ctx, md)
 
 	err := invoker(ctx, method, req, reply, cc, opts...)
 
@@ -26,19 +27,22 @@ func ClientUnaryInterceptor(ctx context.Context, method string, req, reply inter
 
 // ServerUnaryInterceptor 服务端一元拦截器
 func ServerUnaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
-	// authentication (token verification)
-	md, ok := metadata.FromIncomingContext(ctx)
-	if !ok {
-		return nil, status.Errorf(codes.InvalidArgument, "missing metadata")
-	}
-
-	if _, ok := md["authorization"]; !ok {
-		return nil, errcode.ToRPCError(errcode.Unauthorized)
+	// 健康检查不需要校验token
+	if info.FullMethod != "/grpc.health.v1.Health/Check" {
+		// authentication (token verification)
+		md, ok := metadata.FromIncomingContext(ctx)
+		if !ok {
+			return nil, status.Errorf(codes.InvalidArgument, "missing metadata")
+		}
+		if _, ok := md["authorization"]; !ok {
+			return nil, errcode.ToRPCError(errcode.Unauthorized)
+		}
 	}
 
 	m, err := handler(ctx, req)
 	if err != nil {
 		fmt.Printf("RPC failed with error %v\n", err)
 	}
+
 	return m, err
 }
