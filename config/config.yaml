@@ -1,5 +1,6 @@
 Server:
-  HttpPort: 8081
+  GrpcPort: 8081
+  HttpPort: 8082
   ServiceName: "shopping"
 App:
   DefaultPageSize: 10

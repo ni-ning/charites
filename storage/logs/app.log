@@ -26,3 +26,25 @@
 {"level":"INFO","timestamp":"2022-12-25T13:15:14.804+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
 {"level":"INFO","timestamp":"2022-12-25T13:38:55.282+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
 {"level":"INFO","timestamp":"2022-12-25T13:38:55.293+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T14:44:57.586+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T14:44:57.587+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T14:48:02.859+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T14:48:02.861+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:00:39.506+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:00:39.508+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:00:45.387+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:00:45.388+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:11:07.734+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:11:07.740+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:22:45.848+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:22:45.850+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8080"}
+{"level":"INFO","timestamp":"2022-12-25T15:23:16.941+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:23:16.944+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8080"}
+{"level":"INFO","timestamp":"2022-12-25T15:25:20.297+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:25:20.298+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:25:54.165+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:25:54.172+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:26:16.825+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:26:16.831+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-25T15:28:22.040+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-25T15:28:22.042+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}

@@ -3,6 +3,7 @@ package setting
 import "time"
 
 type ServerSettingS struct {
+	GrpcPort    int
 	HttpPort    int
 	ServiceName string
 }

@@ -2,10 +2,16 @@ syntax = "proto3";
 
 option go_package = ".;proto";
 
+import "google/api/annotations.proto";
 
 service Goods {
     // 获取直播间商品列表
-    rpc GetGoodsListByRoomId(GetGoodsListRoomReq) returns (GoodsListReply){};
+    rpc GetGoodsListByRoomId(GetGoodsListRoomReq) returns (GoodsListReply){
+        option (google.api.http) = {
+            post: "/v1/goods",
+            body: "*"
+        };
+    };
 
     // 获取商品详情
     rpc GetGoodsDetail(GetGoodsDetailReq) returns (GoodsDetailReply){};
