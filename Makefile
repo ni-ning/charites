@@ -28,6 +28,9 @@ gen:
     --grpc-gateway_opt paths=source_relative    \
     $(shell find $(PROTO_DIR) -iname "*.proto")
 
+hello:
+	go run  client/helloworld.go
+
 help:
 	@echo "make build - 编译指定文件"
 	@echo "make run - 直接运行项目"
