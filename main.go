@@ -7,7 +7,6 @@ import (
 	_ "charites/bootstrap"
 	"charites/global"
 	"charites/middleware"
-	"charites/model"
 	"charites/pkg/registry"
 	"charites/pkg/utils"
 	pb "charites/proto"
@@ -19,6 +18,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
@@ -28,19 +28,10 @@ import (
 )
 
 func init() {
-	fmt.Println("main.init...")
-	var count1 int64
-	db := global.DBEngine.Model(&model.Goods{}).Count(&count1)
-	if db.Error != nil {
-		log.Fatalf("global.DBEngine err: %v", db.Error)
-	}
-	fmt.Println("Goods Count:", count1)
-	var count2 int64
-	db = global.DBEngine.Model(&model.RoomGoods{}).Count(&count2)
-	if db.Error != nil {
-		log.Fatalf("global.DBEngine err: %v", db.Error)
-	}
-	fmt.Println("RoomGoods Count:", count2)
+	// fmt.Println("main.init...")
+	// data, err := shopping.GetGoodsListByRoomId(context.Background(), int64(1))
+	// fmt.Println("GetGoodsListByRoomId err: ", err)
+	// fmt.Println("GetGoodsListByRoomId data: ", data)
 }
 
 func main() {
@@ -82,8 +73,8 @@ func main() {
 	signal.Notify(quitChan, syscall.SIGTERM, syscall.SIGINT)
 	<-quitChan // 一直卡住，直到收到中断信号
 
-	fmt.Println("*服务关闭清理流程*")
+	global.Logger.Info("*服务关闭清理流程*")
 	serviceId := fmt.Sprintf("%s-%s-%d", global.ServerSetting.ServiceName, ip, global.ServerSetting.HttpPort)
-	fmt.Println("注销服务: ", serviceId)
+	global.Logger.Info("注销服务: ", zap.String("serviceId", serviceId))
 	client.DeregisterService(serviceId)
 }

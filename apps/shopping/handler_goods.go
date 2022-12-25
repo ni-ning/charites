@@ -1,11 +1,9 @@
 package shopping
 
 import (
+	"charites/pkg/errcode"
 	pb "charites/proto"
 	"context"
-
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 type GoodsServer struct {
@@ -16,9 +14,13 @@ func NewGoodsServer() *GoodsServer {
 	return &GoodsServer{}
 }
 
-func (g GoodsServer) GetGoodsListByRoomId(context.Context, *pb.GetGoodsListRoomReq) (*pb.GoodsListReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGoodsListByRoomId not implemented")
+func (g GoodsServer) GetGoodsListByRoomId(ctx context.Context, req *pb.GetGoodsListRoomReq) (*pb.GoodsListReply, error) {
+	if req.RoomId <= 0 {
+		return nil, errcode.ToRPCError(errcode.InvalidParams)
+	}
+	return GetGoodsListByRoomId(ctx, req.RoomId)
 }
+
 func (g GoodsServer) GetGoodsDetail(context.Context, *pb.GetGoodsDetailReq) (*pb.GoodsDetailReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetGoodsDetail not implemented")
+	return nil, errcode.ToRPCError(errcode.Success)
 }
