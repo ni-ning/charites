@@ -2,6 +2,7 @@ package main
 
 import (
 	"charites/middleware"
+	"charites/pkg/errcode"
 	pb "charites/proto"
 	"context"
 	"fmt"
@@ -23,9 +24,13 @@ func main() {
 	defer conn.Close()
 
 	client := pb.NewStockClient(conn)
-	resp, err := client.GetStock(context.Background(), &pb.GoodsStockInfo{GoodsId: 1, Num: 1})
+
+	resp, err := client.ReduceStock(context.Background(), &pb.GoodsStockInfo{GoodsId: 1, Num: 1})
 	if err != nil {
-		log.Printf("client.XStock err: %s", err)
+		sts := errcode.FromError(err)
+		details := sts.Details()
+		log.Printf("client.ReduceStock Error details: %v\n", details)
+		return
 	}
-	fmt.Printf("resp: %#v\n", resp)
+	fmt.Printf("【resp】GoodsId:%d, Num:%d\n", resp.GoodsId, resp.Num)
 }

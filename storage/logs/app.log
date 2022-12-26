@@ -56,3 +56,13 @@
 {"level":"INFO","timestamp":"2022-12-26T17:34:53.452+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
 {"level":"INFO","timestamp":"2022-12-26T18:23:06.744+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
 {"level":"INFO","timestamp":"2022-12-26T18:23:06.751+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-26T20:00:44.720+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-26T20:00:44.722+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-26T20:05:22.737+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-26T20:05:22.740+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"ERROR","timestamp":"2022-12-26T20:05:29.039+0800","caller":"stock/handler.go:38","msg":"ErrorDBOperateStock","error":"Error 1146: Table 'charites.shopping_stock' doesn't exist"}
+{"level":"ERROR","timestamp":"2022-12-26T20:08:36.787+0800","caller":"stock/handler.go:38","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"INFO","timestamp":"2022-12-26T20:16:12.214+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-26T20:16:12.221+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-26T20:22:28.098+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-26T20:22:28.101+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
