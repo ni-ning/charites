@@ -3,6 +3,7 @@ package main
 import (
 	"charites/apps/helloword"
 	"charites/apps/shopping"
+	"charites/apps/stock"
 	"charites/apps/tag"
 	_ "charites/bootstrap"
 	"charites/global"
@@ -49,6 +50,7 @@ func main() {
 	pb.RegisterGreeterServer(s, helloword.NewGreeterServer())
 	pb.RegisterTagServiceServer(s, tag.NewTagServer())
 	pb.RegisterGoodsServer(s, shopping.NewGoodsServer())
+	pb.RegisterStockServer(s, stock.NewStockServer())
 
 	// 注册 gRPC 接口服务2：三方插件接口服务
 	reflection.Register(s)                               // grpcurl
@@ -62,7 +64,7 @@ func main() {
 	// 启动 gRPC 服务端轮询，为阻塞服务，结合goroutine实现 *赞*
 	go func() {
 		// 启动 RPC 服务
-		log.Printf("Serving gRPC on http://%s:%d\n", ip.String(), global.ServerSetting.GrpcPort)
+		log.Printf("Serving gRPC on %s:%d\n", ip.String(), global.ServerSetting.GrpcPort)
 		err = s.Serve(lis)
 		if err != nil {
 			log.Fatalf("s.Serve err: %v\n", err)
@@ -87,16 +89,21 @@ func main() {
 			log.Fatalln("grpc.DialContext err:", err)
 		}
 		gwmux := runtime.NewServeMux()
-		// 注册RegisterGoodsHandler
+		// gRPC服务映射为HTTP服务
 		err = pb.RegisterGoodsHandler(context.Background(), gwmux, conn)
 		if err != nil {
-			log.Fatalln("Failed to register gateway:", err)
+			log.Fatalln("pb.RegisterGoodsHandler err:", err)
 		}
+		err = pb.RegisterStockHandler(context.Background(), gwmux, conn)
+		if err != nil {
+			log.Fatalln("pb.RegisterStockHandler err:", err)
+		}
+
 		gwServer := &http.Server{
 			Addr:    fmt.Sprintf(":%d", global.ServerSetting.HttpPort),
 			Handler: gwmux,
 		}
-		// 8090端口提供gRPC-Gateway服务
+		// 提供gRPC-Gateway服务
 		log.Printf("Serving gRPC-Gateway on http://%s:%d\n", ip.String(), global.ServerSetting.HttpPort)
 		log.Fatalln(gwServer.ListenAndServe())
 	}()

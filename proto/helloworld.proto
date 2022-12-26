@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 option go_package = ".;proto";
+// option go_package = "github.com/ni-ning/charites/proto";
 
 
 service Greeter {

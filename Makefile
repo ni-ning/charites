@@ -36,5 +36,3 @@ help:
 	@echo "make run - 直接运行项目"
 	@echo "make clean - 删除编译文件"
 	@echo "make gen - 生成pb及grpc代码"
-
-

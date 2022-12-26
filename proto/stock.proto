@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = ".;proto";
+
+import "google/api/annotations.proto";
+
+service Stock {
+    // 设置库存数
+    rpc SetStock(GoodsStockInfo) returns (GoodsStockInfo){
+        option (google.api.http) = {
+            post: "/v1/setstock",
+            body: "*"
+        };
+    };
+    // 获取库存数
+    rpc GetStock(GoodsStockInfo) returns (GoodsStockInfo){
+        option (google.api.http) = {
+            post: "/v1/getstock",
+            body: "*"
+        };
+    };
+    // 扣减库存数
+    rpc ReduceStock(GoodsStockInfo) returns (GoodsStockInfo){
+        option (google.api.http) = {
+            post: "/v1/reducestock",
+            body: "*"
+        };
+    };
+}
+
+message GoodsStockInfo {
+    int64 GoodsId = 1;
+    int64 Num = 2;
+}
