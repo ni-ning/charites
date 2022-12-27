@@ -30,6 +30,16 @@ type DatabaseSettingS struct {
 	MaxOpenConns int
 }
 
+type RedisSettingS struct {
+	Address  string
+	Password string
+	DB       int
+	PoolSize int
+}
+type ConsulSettingS struct {
+	Address string
+}
+
 // 读取section的记录
 var sections = make(map[string]interface{})
 

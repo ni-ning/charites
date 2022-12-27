@@ -35,5 +35,9 @@ func (StockServer) ReduceStock(ctx context.Context, req *pb.GoodsStockInfo) (*pb
 		return nil, errcode.ToRPCError(errcode.InvalidParams)
 	}
 
-	return ReduceStock(ctx, req.GoodsId, req.Num)
+	// return ReduceStockWithTransaction(ctx, req.GoodsId, req.Num)
+	// return ReduceStockWithOptimisticLock(ctx, req.GoodsId, req.Num)
+	// return ReduceStockWithPessimisticLock(ctx, req.GoodsId, req.Num)
+	return ReduceStockWithDistributedLock(ctx, req.GoodsId, req.Num)
+
 }

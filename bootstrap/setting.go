@@ -26,5 +26,14 @@ func setupSetting() error {
 		return err
 	}
 
+	err = setting.ReadSection("Redis", &global.RedisSetting)
+	if err != nil {
+		return err
+	}
+	err = setting.ReadSection("Consul", &global.ConsulSetting)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

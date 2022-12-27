@@ -21,7 +21,7 @@ func ClientUnaryInterceptor(ctx context.Context, method string, req, reply inter
 	err := invoker(ctx, method, req, reply, cc, opts...)
 
 	end := time.Now()
-	fmt.Printf("RPC: %s, start time: %s, end time: %s, err: %v\n", method, start.Format("Basic"), end.Format(time.RFC3339), err)
+	fmt.Printf("ClientUnaryInterceptor: %s, start time: %s, end time: %s, err: %v\n", method, start.Format(time.RFC3339), end.Format(time.RFC3339), err)
 	return err
 }
 

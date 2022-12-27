@@ -10,6 +10,8 @@ var (
 	ServerSetting   *setting.ServerSettingS
 	AppSetting      *setting.AppSettingS
 	DatabaseSetting *setting.DatabaseSettingS
+	RedisSetting    *setting.RedisSettingS
+	ConsulSetting   *setting.ConsulSettingS
 
 	Logger *zap.Logger
 )

@@ -20,3 +20,11 @@ Database:
   ParseTime: True
   MaxIdleConns: 10
   MaxOpenConns: 30
+Redis:
+  Address: localhost:6379
+  Password: ""
+  DB: 0
+  PoolSize: 20
+Consul:
+  Address: 127.0.0.1:8500
+

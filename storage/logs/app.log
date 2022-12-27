@@ -66,3 +66,101 @@
 {"level":"INFO","timestamp":"2022-12-26T20:16:12.221+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
 {"level":"INFO","timestamp":"2022-12-26T20:22:28.098+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
 {"level":"INFO","timestamp":"2022-12-26T20:22:28.101+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T10:48:40.143+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T10:48:40.149+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T11:49:08.434+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T11:49:08.438+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.581+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.582+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.581+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.582+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.582+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.582+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.582+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.582+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.583+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"ERROR","timestamp":"2022-12-27T11:50:01.583+0800","caller":"gorm@v1.24.2/finisher_api.go:622","msg":"ErrorDBOperateStock","error":"record not found"}
+{"level":"INFO","timestamp":"2022-12-27T12:25:23.503+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T12:25:23.509+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T12:27:11.938+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T12:27:11.940+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T12:27:57.442+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T12:27:57.444+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T12:49:12.061+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T12:49:12.064+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T13:04:43.281+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:04:43.284+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.399+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.399+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.399+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.399+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.400+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.402+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.402+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.402+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.402+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.402+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.403+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:04:50.404+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.338+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.339+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.341+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.341+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.341+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.341+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.341+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.342+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.342+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.342+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.343+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.343+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.343+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.343+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.343+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.343+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.345+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.346+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.346+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:08.346+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"ERROR","timestamp":"2022-12-27T13:05:27.280+0800","caller":"stock/handler.go:40","msg":"ErrorDBOperateStock","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"INFO","timestamp":"2022-12-27T13:09:23.706+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:09:23.708+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"ERROR","timestamp":"2022-12-27T13:09:30.982+0800","caller":"stock/handler.go:40","msg":"model.Stock.Updates","error":"Error 1054: Unknown column 'version' in 'where clause'"}
+{"level":"INFO","timestamp":"2022-12-27T13:12:09.263+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:12:09.264+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T13:15:34.389+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:15:34.390+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T13:16:44.902+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:16:44.904+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T13:18:53.481+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:18:53.484+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T13:22:19.067+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:22:19.082+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T13:59:46.226+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T13:59:46.232+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T14:34:26.526+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T14:34:26.528+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T14:34:42.522+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T14:34:42.523+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T14:34:55.102+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T14:34:55.113+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T14:37:00.769+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T14:37:00.771+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T15:07:50.030+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T15:07:50.032+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T15:08:37.515+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T15:08:37.517+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T15:09:05.890+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T15:09:05.891+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T15:09:21.771+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T15:09:21.772+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
+{"level":"INFO","timestamp":"2022-12-27T15:09:44.186+0800","caller":"runtime/proc.go:250","msg":"*服务关闭清理流程*"}
+{"level":"INFO","timestamp":"2022-12-27T15:09:44.188+0800","caller":"runtime/proc.go:250","msg":"注销服务: ","serviceId":"shopping-192.168.1.4-8081"}
