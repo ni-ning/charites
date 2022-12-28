@@ -17,5 +17,8 @@ var (
 	ErrorRedisUnlockStock = NewError(40010006, "RedisUnlock错误")
 
 	// 500xx order
-	ErrorNeedMachineId = NewError(50010001, "Snowflake need machineId")
+	ErrorRPCOrderToGoods  = NewError(50010001, "订单请求商品微服务错误")
+	ErrorRPCOrderToStock  = NewError(50010002, "订单请求库存微服务错误")
+	ErrorCreateOrder      = NewError(50010003, "订单创建错误")
+	ErrorCreateOrderDetal = NewError(50010004, "订单详情创建错误")
 )

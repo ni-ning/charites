@@ -20,8 +20,7 @@ func main() {
 		log.Printf("global.GoodsCli.GetGoodsDetail err: %v\n", err)
 		return
 	}
-	fmt.Println("resp.GoodsId:", resp.GoodsId)
-	fmt.Println("resp.Price:", resp.Price)
+	fmt.Printf("global.GoodsCli.GetGoodsDetail: %#v\n", resp)
 
 	resp2, err := global.StockCli.ReduceStock(context.Background(), &pb.GoodsStockInfo{GoodsId: 1, Num: 1})
 	if err != nil {
@@ -29,6 +28,4 @@ func main() {
 		return
 	}
 	fmt.Printf("resp GoodsId:%d, Num:%d\n", resp2.GoodsId, resp2.Num)
-
-	// 订单微服务
 }

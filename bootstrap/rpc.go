@@ -10,7 +10,7 @@ import (
 )
 
 func setupRPClient() error {
-	global.Logger.Info("setupRPClient Goods Serivce...")
+	// 商品微服务客户端
 	goodsConn, err := grpc.Dial("127.0.0.1:8090",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithUnaryInterceptor(middleware.ClientUnaryInterceptor),
@@ -20,7 +20,7 @@ func setupRPClient() error {
 	}
 	global.GoodsCli = pb.NewGoodsClient(goodsConn)
 
-	global.Logger.Info("setupRPClient Stock Serivce...")
+	// 库存微服务客户端
 	stockConn, err := grpc.Dial("127.0.0.1:8092",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithUnaryInterceptor(middleware.ClientUnaryInterceptor),

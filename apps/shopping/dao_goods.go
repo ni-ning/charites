@@ -84,8 +84,8 @@ func GetGoodsListByRoomId(ctx context.Context, roomId int64) (*pb.GoodsListReply
 			CategoryId:  goods.CategoryId,
 			Status:      int32(goods.Status),
 			Title:       goods.Title,
-			MarketPrice: fmt.Sprintf("%.2f", float64(goods.MarketPrice/100)),
-			Price:       fmt.Sprintf("%.2f", float64(goods.MarketPrice/100)),
+			MarketPrice: fmt.Sprintf("%d", goods.MarketPrice),
+			Price:       fmt.Sprintf("%d", goods.Price),
 			Brief:       goods.Brief,
 			HeadImgs:    headImgs,
 		})

@@ -18,7 +18,7 @@ create table charites.shopping_goods(
     market_price bigint(20) unsigned not null default 0 comment '市场价/划线价(分)',
     price bigint(20) unsigned not null default 0 comment '售价(分)',
     
-    breif varchar(255) not null default '' comment '简介',
+    brief varchar(255) not null default '' comment '简介',
     head_imgs varchar(1024) not null default '' comment '头像 []',
     videos varchar(1024) not null default '' comment '视频介绍 []',
     detail varchar(2048) not null default '' comment '简介 [实际也是图片集合]',
