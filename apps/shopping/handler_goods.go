@@ -21,6 +21,12 @@ func (g GoodsServer) GetGoodsListByRoomId(ctx context.Context, req *pb.GetGoodsL
 	return GetGoodsListByRoomId(ctx, req.RoomId)
 }
 
-func (g GoodsServer) GetGoodsDetail(context.Context, *pb.GetGoodsDetailReq) (*pb.GoodsDetailReply, error) {
-	return nil, errcode.ToRPCError(errcode.Success)
+func (g GoodsServer) GetGoodsDetail(ctx context.Context, req *pb.GetGoodsDetailReq) (*pb.GoodsDetailReply, error) {
+	if req.GoodsId <= 0 {
+		return nil, errcode.ToRPCError(errcode.InvalidParams)
+	}
+	detail := &pb.GoodsDetailReply{}
+	detail.GoodsId = req.GoodsId
+	detail.Price = "9.99"
+	return detail, nil
 }

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = ".;proto";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+service Order {
+    // 创建订单
+    rpc CreateOrder(OrderReq) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "/v1/createorder",
+            body: "*"
+        };
+    };
+    // 订单列表
+    // 订单详情
+}
+
+message OrderReq {
+    int64 GoodsId = 1;
+    int64 Num = 2;
+    int64 UserId = 3;
+    int64 OrderId = 4;
+    string Address = 6;
+    string Name = 7;
+    string Phone = 8;
+}

@@ -11,6 +11,12 @@ build:
 run:
 	go run main.go
 
+run_goods:
+	go run main.go -p 8090
+
+run_stock:
+	go run main.go -p 8092
+
 gotool:
 	go fmt ./
 	go vet ./

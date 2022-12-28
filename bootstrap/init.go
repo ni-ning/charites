@@ -22,4 +22,14 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupRedis err: %v", err)
 	}
+
+	err = setupSnowflake("", 1)
+	if err != nil {
+		log.Fatalf("init.setupSnowflake err: %v", err)
+	}
+
+	err = setupRPClient()
+	if err != nil {
+		log.Fatalf("init.setupRPClient err: %v", err)
+	}
 }

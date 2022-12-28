@@ -2,6 +2,7 @@ package main
 
 import (
 	"charites/apps/helloword"
+	"charites/apps/order"
 	"charites/apps/shopping"
 	"charites/apps/stock"
 	"charites/apps/tag"
@@ -12,6 +13,7 @@ import (
 	"charites/pkg/utils"
 	pb "charites/proto"
 	"context"
+	"flag"
 	"net/http"
 
 	"fmt"
@@ -32,14 +34,23 @@ import (
 	healthpb "google.golang.org/grpc/health/grpc_health_v1"
 )
 
+var grpcPort int
+var httpPort int
+
 func init() {
-	// fmt.Println("main.init...")
-	// data, err := shopping.GetGoodsListByRoomId(context.Background(), int64(1))
-	// fmt.Println("GetGoodsListByRoomId err: ", err)
-	// fmt.Println("GetGoodsListByRoomId data: ", data)
+	flag.IntVar(&grpcPort, "p", 8081, "gRPC端口号")
+	flag.Parse()
+	httpPort = grpcPort + 1
 }
 
 func main() {
+	if grpcPort != 0 {
+		global.ServerSetting.GrpcPort = grpcPort
+	}
+	if httpPort != 0 {
+		global.ServerSetting.HttpPort = httpPort
+	}
+
 	ip, _ := utils.GetOutBoundIp()
 
 	// 创建 gRPC 服务端启动对象，NewServer构造函数支持选项，如服务端拦截器
@@ -51,6 +62,7 @@ func main() {
 	pb.RegisterTagServiceServer(s, tag.NewTagServer())
 	pb.RegisterGoodsServer(s, shopping.NewGoodsServer())
 	pb.RegisterStockServer(s, stock.NewStockServer())
+	pb.RegisterOrderServer(s, order.NewOrderServer())
 
 	// 注册 gRPC 接口服务2：三方插件接口服务
 	reflection.Register(s)                               // grpcurl
@@ -97,6 +109,10 @@ func main() {
 		err = pb.RegisterStockHandler(context.Background(), gwmux, conn)
 		if err != nil {
 			log.Fatalln("pb.RegisterStockHandler err:", err)
+		}
+		err = pb.RegisterOrderHandler(context.Background(), gwmux, conn)
+		if err != nil {
+			log.Fatalln("pb.RegisterOrderHandler err:", err)
 		}
 
 		gwServer := &http.Server{

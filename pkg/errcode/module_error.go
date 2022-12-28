@@ -15,4 +15,7 @@ var (
 
 	ErrorRedisLockStock   = NewError(40010005, "RedisLock错误")
 	ErrorRedisUnlockStock = NewError(40010006, "RedisUnlock错误")
+
+	// 500xx order
+	ErrorNeedMachineId = NewError(50010001, "Snowflake need machineId")
 )

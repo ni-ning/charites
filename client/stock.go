@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "charites/bootstrap"
 	"charites/middleware"
 	pb "charites/proto"
 	"context"
@@ -14,7 +15,7 @@ import (
 	_ "github.com/mbobakov/grpc-consul-resolver"
 )
 
-func main() {
+func main2() {
 	// 建立连接 with grpc.DialOption
 	conn, err := grpc.Dial("consul://127.0.0.1:8500/shopping?healthy=true",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
@@ -32,7 +33,7 @@ func main() {
 
 	// 客户端业务逻辑处理，如并发20次操作服务端服务
 	var wg sync.WaitGroup
-	for i := 0; i < 20; i++ {
+	for i := 0; i < 1; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()

@@ -3,6 +3,7 @@ module charites
 go 1.19
 
 require (
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/go-redsync/redsync/v4 v4.7.1
