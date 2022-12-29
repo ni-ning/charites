@@ -46,3 +46,9 @@ type OrderDetail struct {
 func (OrderDetail) TableName() string {
 	return "shopping_order_detail"
 }
+
+type OrderGoodsStockInfo struct {
+	OrderId int64
+	GoodsId int64
+	Num     int64
+}

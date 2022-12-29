@@ -21,4 +21,7 @@ var (
 	ErrorRPCOrderToStock  = NewError(50010002, "订单请求库存微服务错误")
 	ErrorCreateOrder      = NewError(50010003, "订单创建错误")
 	ErrorCreateOrderDetal = NewError(50010004, "订单详情创建错误")
+
+	ErrorNewTransactionProducer = NewError(50010005, "NewTransactionProducer Error")
+	ErrorOrderEntityParam       = NewError(50010006, "OrderEntityParam Error")
 )
