@@ -32,4 +32,10 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupRPClient err: %v", err)
 	}
+
+	err = setupRocketMQ()
+	if err != nil {
+		log.Fatalf("setupRocketMQ err: %v", err)
+	}
+
 }

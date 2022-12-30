@@ -24,4 +24,5 @@ var (
 
 	ErrorNewTransactionProducer = NewError(50010005, "NewTransactionProducer Error")
 	ErrorOrderEntityParam       = NewError(50010006, "OrderEntityParam Error")
+	ErrorOrderCreate            = NewError(50010007, "创建订单失败")
 )

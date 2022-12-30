@@ -34,6 +34,10 @@ func setupSetting() error {
 	if err != nil {
 		return err
 	}
+	err = setting.ReadSection("RocketMQ", &global.RocketMQSetting)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

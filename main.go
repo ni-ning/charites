@@ -23,6 +23,9 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/apache/rocketmq-client-go/v2"
+	"github.com/apache/rocketmq-client-go/v2/consumer"
+	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -41,6 +44,40 @@ func init() {
 	flag.IntVar(&grpcPort, "p", 8081, "gRPC端口号")
 	flag.Parse()
 	httpPort = grpcPort + 1
+}
+
+func StartStockConsume() {
+	// 库存微服务启动消息监听
+	c, _ := rocketmq.NewPushConsumer(
+		consumer.WithNsResolver(primitive.NewPassthroughResolver([]string{global.RocketMQSetting.NameServer})),
+		consumer.WithGroupName(global.RocketMQSetting.GroupStockService),
+	)
+	// 监听Topck
+	err := c.Subscribe(global.RocketMQSetting.TopicStockRollback, consumer.MessageSelector{}, stock.RollbackMsgHandle)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	err = c.Start()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func StartOrderConsume() {
+	// 订单微服务监听超时消息
+	c, _ := rocketmq.NewPushConsumer(
+		consumer.WithNsResolver(primitive.NewPassthroughResolver([]string{global.RocketMQSetting.NameServer})),
+		consumer.WithGroupName(global.RocketMQSetting.GroupOrderService),
+	)
+	// 监听Topck
+	err := c.Subscribe(global.RocketMQSetting.TopicOrderPayTimeout, consumer.MessageSelector{}, order.OrderTimeoutHandle)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	err = c.Start()
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {

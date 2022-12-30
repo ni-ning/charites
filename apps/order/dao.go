@@ -84,40 +84,46 @@ func CreateOrder(ctx context.Context, req *pb.OrderReq) (*emptypb.Empty, error) 
 	return &emptypb.Empty{}, nil
 }
 
-// OrderEntity 自定义结构体，实现两个方法
+// OrderListener 自定义结构体，实现两个方法
 // 发送事务消息的时候，RocketMQ会根据情况自动调用这两个方法
-type OrderEntity struct {
+type OrderListener struct {
 	OrderId int64
 	Param   *pb.OrderReq
 	Err     error
 }
 
 // 当发送prepare(half) message 成功后，这个方法(执行本地事务)就会被执行
-func (o *OrderEntity) ExecuteLocalTransaction(*primitive.Message) primitive.LocalTransactionState {
+func (o *OrderListener) ExecuteLocalTransaction(*primitive.Message) primitive.LocalTransactionState {
 	if o.Param == nil {
+		global.Logger.Error("ExecuteLocalTransaction param is nil")
 		o.Err = errcode.ToRPCError(errcode.ErrorOrderEntityParam)
+		// 库存未扣减
 		return primitive.RollbackMessageState
 	}
 	param := o.Param
 	ctx := context.Background()
 
-	// 请求商品微服务
-	goodsDetail, err := global.GoodsCli.GetGoodsDetail(context.Background(), &pb.GetGoodsDetailReq{GoodsId: param.GoodsId})
+	// 请求商品微服务，查询商品金额(营销相关)
+	goodsDetail, err := global.GoodsCli.GetGoodsDetail(ctx, &pb.GetGoodsDetailReq{GoodsId: param.GoodsId})
 	if err != nil {
+		global.Logger.Error("GoodsCli.GetGoodsDetail failed", zap.Error(err))
 		o.Err = errcode.ToRPCError(errcode.ErrorRPCOrderToGoods)
+		// 库存未扣减
 		return primitive.RollbackMessageState
 	}
 	// 拿到商品价格作为支付价格
 	price, _ := strconv.ParseInt(goodsDetail.Price, 10, 64)
 
 	// 请求库存微服务，扣减库存
-	_, err = global.StockCli.ReduceStock(context.Background(), &pb.GoodsStockInfo{GoodsId: param.GoodsId, Num: param.Num})
+	_, err = global.StockCli.ReduceStock(ctx, &pb.GoodsStockInfo{GoodsId: param.GoodsId, Num: param.Num, OrderId: o.OrderId})
 	if err != nil {
+		global.Logger.Error("StockCli.ReduceStock failed", zap.Error(err))
 		o.Err = errcode.ToRPCError(errcode.ErrorRPCOrderToGoods)
+		// 库存未扣减
 		return primitive.RollbackMessageState
 	}
 
-	// 创建订单与订单详情
+	// 本地事务创建订单与订单详情
 	orderData := model.Order{
 		UserId:         param.UserId,
 		OrderId:        o.OrderId, // 雪花算法生成
@@ -128,15 +134,13 @@ func (o *OrderEntity) ExecuteLocalTransaction(*primitive.Message) primitive.Loca
 		ReceivePhone:   param.Phone,
 		PayAmount:      price * param.Num, // 该订单总价
 	}
-
 	marketPrice, _ := strconv.ParseInt(goodsDetail.MarketPrice, 10, 64)
 	orderDetail := model.OrderDetail{
-		UserId:    param.UserId,
-		OrderId:   o.OrderId, // 雪花算法生成
-		GoodsId:   param.GoodsId,
-		Num:       param.Num,
-		PayAmount: price * param.Num, // 该商品总价
-
+		UserId:      param.UserId,
+		OrderId:     o.OrderId, // 雪花算法生成
+		GoodsId:     param.GoodsId,
+		Num:         param.Num,
+		PayAmount:   price * param.Num, // 该商品总价
 		Title:       goodsDetail.Title,
 		MarketPrice: marketPrice,
 		Price:       price,
@@ -158,33 +162,61 @@ func (o *OrderEntity) ExecuteLocalTransaction(*primitive.Message) primitive.Loca
 	})
 	if err != nil {
 		// 本地事务执行失败，但上一步库存已经扣减成功
-		// o.Err = err 不要这个操作
 		return primitive.CommitMessageState
 	}
 
-	// 说明本地事务执行成功，需要把之前的 half-message丢弃
+	// 发送延迟消息
+	// 1s 5s 10s...
+	// 消息中具体的载荷，定义为一个结构体，赞
+	data := model.OrderGoodsStockInfo{
+		OrderId: o.OrderId,
+		GoodsId: param.GoodsId,
+		Num:     param.Num,
+	}
+	b, _ := json.Marshal(data)
+	// 定义RocketMQ消息体
+	msg := primitive.NewMessage(global.RocketMQSetting.TopicOrderPayTimeout, b)
+	msg.WithDelayTimeLevel(3)
+	_, err = global.Producer.SendSync(context.Background(), msg)
+	if err != nil {
+		// 延时消息发送失败
+		return primitive.CommitMessageState
+	}
+	// 说明本地事务执行成功，不需要发送回滚库存的消息
 	return primitive.RollbackMessageState
 }
 
 // 当发送prepare(half) message 没有响应时，broker会回查本地事务状态，此时这个方法被执行
-func (o *OrderEntity) CheckLocalTransaction(*primitive.MessageExt) primitive.LocalTransactionState {
-	return primitive.CommitMessageState
+func (o *OrderListener) CheckLocalTransaction(*primitive.MessageExt) primitive.LocalTransactionState {
+	// 检查本地是否订单创建成功即可
+	var count int64
+	global.DBEngine.
+		WithContext(context.Background()).
+		Model(&model.Order{}).Where("order_id = ?", o.OrderId).
+		Count(&count)
+	if count <= 0 {
+		// 说明订单创建失败，需要回滚库存
+		return primitive.CommitMessageState
+	}
+	// 不存回滚库存
+	return primitive.RollbackMessageState
 }
 
 // CreateOrderWithRoctetMQ 创建订单 RoctetMQ 实现分布式事务
 func CreateOrderWithRoctetMQ(ctx context.Context, param *pb.OrderReq) error {
 	// 生成订单号
 	orderId := utils.GenInt64()
-
-	orderEntity := &OrderEntity{
+	// 订单号+请求的参数传入到Listener中，Listener实现本地事务
+	orderListener := &OrderListener{
 		OrderId: orderId,
 		Param:   param,
 	}
+	// orderListener 每个订单不同都需要创建
 	p, err := rocketmq.NewTransactionProducer(
-		orderEntity,
-		producer.WithNsResolver(primitive.NewPassthroughResolver([]string{"192.168.1.4:9876"})),
+		orderListener,
+		producer.WithNsResolver(primitive.NewPassthroughResolver([]string{global.RocketMQSetting.NameServer})),
 		producer.WithRetry(2),
-		producer.WithGroupName("order_srv_1"), // 生产者组
+		producer.WithGroupName(global.RocketMQSetting.GroupOrderService), // 生产者组
 	)
 	if err != nil {
 		global.Logger.Error("ErrorNewTransactionProducer", zap.Error(err))
@@ -200,12 +232,18 @@ func CreateOrderWithRoctetMQ(ctx context.Context, param *pb.OrderReq) error {
 	b, _ := json.Marshal(data)
 	// 定义RocketMQ消息体
 	msg := &primitive.Message{
-		Topic: "stock_rollback", // 回滚库存，可定义为 Conf
+		Topic: global.RocketMQSetting.TopicStockRollback, // 回滚库存，可定义为 Conf
 		Body:  b,
 	}
-
 	// 发送事务消息
-	res, err := p.SendMessageInTransaction(context.Background(), msg)
-	fmt.Print(res)
+	res, _ := p.SendMessageInTransaction(context.Background(), msg)
+	if res.State == primitive.CommitMessageState {
+		// 回滚库存消息被正常投递，说明创建订单错误
+		return errcode.ToRPCError(errcode.ErrorOrderCreate)
+	}
+	if orderListener.Err != nil {
+		// 内部其他错误
+		return orderListener.Err
+	}
 	return nil
 }

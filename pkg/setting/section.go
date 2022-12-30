@@ -40,6 +40,14 @@ type ConsulSettingS struct {
 	Address string
 }
 
+type RocketMQS struct {
+	NameServer           string
+	TopicStockRollback   string
+	TopicOrderPayTimeout string
+	GroupOrderService    string
+	GroupStockService    string
+}
+
 // 读取section的记录
 var sections = make(map[string]interface{})
 

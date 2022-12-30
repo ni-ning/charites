@@ -12,6 +12,7 @@ var (
 	DatabaseSetting *setting.DatabaseSettingS
 	RedisSetting    *setting.RedisSettingS
 	ConsulSetting   *setting.ConsulSettingS
+	RocketMQSetting *setting.RocketMQS
 
 	Logger *zap.Logger
 )

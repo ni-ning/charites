@@ -27,4 +27,10 @@ Redis:
   PoolSize: 20
 Consul:
   Address: 127.0.0.1:8500
+RocketMQ:
+  NameServer: 192.168.1.4:9876
+  TopicStockRollback: shopping_stock_rollback
+  TopicOrderPayTimeout: shopping_order_pay_timeout
+  GroupOrderProducer: order_srv_1
+  GroupStockConsumer: stock_srv_1
 
