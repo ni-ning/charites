@@ -69,7 +69,7 @@ func StartOrderConsume() {
 		consumer.WithNsResolver(primitive.NewPassthroughResolver([]string{global.RocketMQSetting.NameServer})),
 		consumer.WithGroupName(global.RocketMQSetting.GroupOrderService),
 	)
-	// 监听Topck
+	// 订阅topic
 	err := c.Subscribe(global.RocketMQSetting.TopicOrderPayTimeout, consumer.MessageSelector{}, order.OrderTimeoutHandle)
 	if err != nil {
 		fmt.Println(err.Error())

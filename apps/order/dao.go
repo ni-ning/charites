@@ -166,7 +166,7 @@ func (o *OrderListener) ExecuteLocalTransaction(*primitive.Message) primitive.Lo
 	}
 
 	// 发送延迟消息
-	// 1s 5s 10s...
+	// 不同等级：1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
 	// 消息中具体的载荷，定义为一个结构体，赞
 	data := model.OrderGoodsStockInfo{
 		OrderId: o.OrderId,
@@ -180,6 +180,7 @@ func (o *OrderListener) ExecuteLocalTransaction(*primitive.Message) primitive.Lo
 	_, err = global.Producer.SendSync(context.Background(), msg)
 	if err != nil {
 		// 延时消息发送失败
+		global.Logger.Error("send delay msg failed", zap.Error(err))
 		return primitive.CommitMessageState
 	}
 	// 说明本地事务执行成功，不需要发送回滚库存的消息

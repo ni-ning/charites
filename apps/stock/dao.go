@@ -195,7 +195,7 @@ func ReduceStockWithDistributedLock(ctx context.Context, param *pb.GoodsStockInf
 			OrderId: param.OrderId,
 			GoodsId: param.GoodsId,
 			Num:     param.Num,
-			Status:  1,
+			Status:  1, // 预扣减
 		}
 		err = tx.WithContext(ctx).Save(&stockRecord).Error
 		if err != nil {
