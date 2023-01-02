@@ -14,5 +14,12 @@ func setupRocketMQ() (err error) {
 		producer.WithRetry(2),
 		producer.WithGroupName("order_srv"), // 生产者组
 	)
+	if err != nil {
+		return
+	}
+	err = global.Producer.Start()
+	if err != nil {
+		return
+	}
 	return
 }
